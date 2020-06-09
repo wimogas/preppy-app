@@ -127,7 +127,7 @@ const CustomBlock = styled.div`
     props.float &&
     css`
     box-shadow: 0px 16px 52px -34px rgba(0,0,0,0.75);
-    border: 4px solid ${props => !props.theme.isDark ? props.theme.colors.primary : "white"};
+    border: 4px solid ${props => props.theme.colors.primary};
   `}
   ${props =>
     props.done &&

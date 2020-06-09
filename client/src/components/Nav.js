@@ -53,7 +53,7 @@ const Nav = ({
           </Block>
           <Block row hide={"mobile"}>
             <Block flex={"0.2"} justify={"flex-start"}>
-                <Link to="/main-screen" onClick={() => setActiveNav("main-screen")}><Logo style={{ fill: "white", maxWidth: "100px", marginLeft: "16px"}}></Logo></Link>
+                <Link to="/main-screen" onClick={() => setActiveNav("main-screen")}><Logo style={{ fill: "white", maxWidth: "100px", marginLeft: "32px"}}></Logo></Link>
             </Block>
             <Block
               row

@@ -30,7 +30,6 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
     const BREAKFAST = mealPlan[0].week[0][i.i]
     const LUNCH = mealPlan[0].week[1][i.i]
     const DINNER = mealPlan[0].week[2][i.i]
-    console.log(MATCHES_PAST)
     const TOTAL_CALORIES = mealPlan[0].week[0][i.i].nutrition[0].amount + mealPlan[0].week[1][i.i].nutrition[0].amount + mealPlan[0].week[2][i.i].nutrition[0].amount
     return(
     <>
