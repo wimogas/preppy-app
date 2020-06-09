@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://admin:1231230560@barebonesdb-pb1jb.mongodb.net/preppy?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}
