@@ -24,8 +24,8 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
     const HOUR = moment().hour()
     const MATCHES_TODAY = DAYS.indexOf(DAY) === TODAY - 1
     const MATCHES_PAST = DAYS.indexOf(DAY) - TODAY + 1
-    const MATCHES_MORNING = HOUR > 6 && HOUR < 12
-    const MATCHES_NOON =  HOUR > 12 && HOUR < 17
+    const MATCHES_MORNING = HOUR >= 6 && HOUR < 12
+    const MATCHES_NOON =  HOUR >= 12 && HOUR < 17
     const MATCHES_EVENING = HOUR >= 17
     const BREAKFAST = mealPlan[0].week[0][i.i]
     const LUNCH = mealPlan[0].week[1][i.i]
