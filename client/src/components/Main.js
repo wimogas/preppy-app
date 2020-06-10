@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {Link, Redirect} from 'react-router-dom'
 import moment from 'moment'
+import { FaCheck } from "react-icons/fa";
 
 import { Text, Block, Button, Spinner } from "../components";
 
@@ -31,40 +32,45 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
     const LUNCH = mealPlan[0].week[1][i.i]
     const DINNER = mealPlan[0].week[2][i.i]
     const TOTAL_CALORIES = mealPlan[0].week[0][i.i].nutrition[0].amount + mealPlan[0].week[1][i.i].nutrition[0].amount + mealPlan[0].week[2][i.i].nutrition[0].amount
+    let toggleDoneDay = MATCHES_PAST < 0 ? false : true
+
     return(
     <>
-      <Block row middle><Text h2 active={MATCHES_TODAY}>{DAY}</Text><Text light style={{marginLeft: "12px"}}>({TOTAL_CALORIES.toFixed(0)} Calories)</Text></Block>
+      <Block row middle>
+        <Text h2 active={MATCHES_TODAY}>{DAY}</Text>
+        <Text light style={{marginLeft: "12px"}}>({TOTAL_CALORIES.toFixed(0)} Calories)</Text>
+      </Block>
       <Block  row wrap="true" margin={"0px 0px 16px 0px"}>
-        <Block card float={MATCHES_TODAY && MATCHES_MORNING} done={MATCHES_PAST < 0} margin={"16px" } >
-        <Link to={`/main-screen/${BREAKFAST.id}`}>
-          <Text>Breakfast</Text>
-          <Block row middle >
-            <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${BREAKFAST.id}-312x231.jpg`}></img>
-            <Text h3>{BREAKFAST.title}</Text>
+          <Block card float={MATCHES_TODAY && MATCHES_MORNING} done={MATCHES_PAST < 0} margin={"16px" } >
+          <Link to={`/main-screen/${BREAKFAST.id}`}>
+            <Text>Breakfast</Text>
+            <Block row middle >
+              <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${BREAKFAST.id}-312x231.jpg`}></img>
+              <Text h3>{BREAKFAST.title}</Text>
+            </Block>
+            <Text>{BREAKFAST.nutrition[0].amount} Calories</Text>
+            </Link>
           </Block>
-          <Text>{BREAKFAST.nutrition[0].amount} Calories</Text>
-          </Link>
-        </Block>
-        <Block card float={MATCHES_TODAY && MATCHES_NOON} done={MATCHES_PAST < 0} margin={"16px"}>
-        <Link to={`/main-screen/${LUNCH.id}`}>
-        <Text>Lunch</Text>
-          <Block row middle >
-          <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${LUNCH.id}-312x231.jpg`}></img>
-          <Text h3>{LUNCH.title}</Text>
+          <Block card float={MATCHES_TODAY && MATCHES_NOON} done={MATCHES_PAST < 0} margin={"16px"}>
+          <Link to={`/main-screen/${LUNCH.id}`}>
+          <Text>Lunch</Text>
+            <Block row middle >
+            <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${LUNCH.id}-312x231.jpg`}></img>
+            <Text h3>{LUNCH.title}</Text>
+            </Block>
+            <Text >{LUNCH.nutrition[0].amount} Calories</Text>
+            </Link>
           </Block>
-          <Text >{LUNCH.nutrition[0].amount} Calories</Text>
-          </Link>
-        </Block>
-        <Block card float={MATCHES_TODAY && MATCHES_EVENING} done={MATCHES_PAST < 0} margin={"16px"}>
-        <Link to={`/main-screen/${DINNER.id}`}>
-          <Text>Dinner</Text>
-          <Block row middle >
-            <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${DINNER.id}-312x231.jpg`}></img>
-            <Text h3>{DINNER.title}</Text>
+          <Block card float={MATCHES_TODAY && MATCHES_EVENING} done={MATCHES_PAST < 0} margin={"16px"}>
+          <Link to={`/main-screen/${DINNER.id}`}>
+            <Text>Dinner</Text>
+            <Block row middle >
+              <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${DINNER.id}-312x231.jpg`}></img>
+              <Text h3>{DINNER.title}</Text>
+            </Block>
+            <Text>{DINNER.nutrition[0].amount} Calories</Text>
+            </Link>
           </Block>
-          <Text>{DINNER.nutrition[0].amount} Calories</Text>
-          </Link>
-        </Block>
       </Block>
     </>
   )}

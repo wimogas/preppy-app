@@ -132,8 +132,8 @@ const CustomBlock = styled.div`
   ${props =>
     props.done &&
     css`
-    opacity: 0.3;
-    background: rgba(0,0,0,0.1)
+    opacity: 0.7;
+    background: rgba(0,0,0,0.1);
   `}
 `;
 
