@@ -12,7 +12,7 @@ import { getMealPlan, deleteMealPlan } from '../redux/actions/mealplan.actions'
 const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
  const [btnLoading, setBtnLoading] = useState(false)
  const [redirect, setRedirect] = useState(false)
- const [full, setFull] = useState(false)
+ const [full, setFull] = useState(true)
 
   useEffect(() => {
       getMealPlan(user)
