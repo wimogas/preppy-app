@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components'
 
-import {Text, Block, BackButton} from '../components'
+import {Text, Block, BackButton, Spinner} from '../components'
 
 const CustomImg = styled.img`
   max-width: 172px;
@@ -30,7 +30,7 @@ const Single = ({match, history}) => {
 
   return (
     <>
-     {recipeData && (
+     {recipeData ? (
         <Block card maxWidth={"600px"}>  
         <BackButton history={history} />
          <Block row wrap={"true"} middle padding={"0px 0px 16px 0px"} style={{borderBottom: "1px solid #EFF3FB"}}>
@@ -44,7 +44,7 @@ const Single = ({match, history}) => {
          <Block padding={"12px 0px 0px 0px"}>
           <Text h2>Ingredients</Text>
           {recipeData.extendedIngredients && recipeData.extendedIngredients.map((ingredient,i) => (
-            <Block row middle>
+            <Block key={i} row middle>
               <Block row center style={{maxWidth:"80px"}}>
               <img alt={`${i}`} style={{maxWidth:"45px", maxHeight:"45px"}} src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}/>
               </Block>
@@ -63,7 +63,9 @@ const Single = ({match, history}) => {
          )}
          </Block>
        </Block>
-     )}
+     ) : (
+      <Spinner large/>
+    )}
     </>
   );
 };

@@ -31,9 +31,7 @@ const HomePage = ({ user, history }) => {
         <Button full icon onClick={() => history.push("/sign-up")}>
           Sign up
         </Button>
-      
           </Block>
-        
         </Block>
         </Block>
     </Block>
