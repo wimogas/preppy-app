@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {Link, Redirect} from 'react-router-dom'
 import moment from 'moment'
-import { FaCheck } from "react-icons/fa";
+import { FaThLarge, FaThList } from "react-icons/fa";
 
 import { Text, Block, Button, Spinner } from "../components";
 
@@ -12,6 +12,7 @@ import { getMealPlan, deleteMealPlan } from '../redux/actions/mealplan.actions'
 const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
  const [btnLoading, setBtnLoading] = useState(false)
  const [redirect, setRedirect] = useState(false)
+ const [full, setFull] = useState(false)
 
   useEffect(() => {
       getMealPlan(user)
@@ -40,7 +41,8 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
         <Text h2 active={MATCHES_TODAY}>{DAY}</Text>
         <Text light style={{marginLeft: "12px"}}>({TOTAL_CALORIES.toFixed(0)} Calories)</Text>
       </Block>
-      <Block  row wrap="true" margin={"0px 0px 16px 0px"}>
+      {full ? (
+        <Block  row wrap="true" margin={"0px 0px 16px 0px"}>
           <Block card float={MATCHES_TODAY && MATCHES_MORNING} done={MATCHES_PAST < 0} margin={"16px" } >
           <Link to={`/main-screen/${BREAKFAST.id}`}>
             <Text>Breakfast</Text>
@@ -71,14 +73,37 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
             <Text>{DINNER.nutrition[0].amount} Calories</Text>
             </Link>
           </Block>
-      </Block>
+        </Block>
+      ) : (
+        <Block wrap="true" margin={"0px 0px 16px 0px"}>
+          <Link to={`/main-screen/${BREAKFAST.id}`}>
+            <Block row middle>
+              <img alt="" style={{maxWidth: "42px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${BREAKFAST.id}-312x231.jpg`}></img>
+              <Text primary={MATCHES_TODAY && MATCHES_MORNING} bold={MATCHES_TODAY && MATCHES_MORNING}>{BREAKFAST.title}</Text>
+            </Block>
+          </Link>
+          <Link to={`/main-screen/${LUNCH.id}`}>
+            <Block row middle>
+              <img alt="" style={{maxWidth: "42px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${LUNCH.id}-312x231.jpg`}></img>
+              <Text primary={MATCHES_TODAY && MATCHES_NOON} bold={MATCHES_TODAY && MATCHES_NOON}>{LUNCH.title}</Text>
+            </Block>
+          </Link>
+          <Link to={`/main-screen/${DINNER.id}`}>
+            <Block row middle>
+              <img alt="" style={{maxWidth: "42px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${DINNER.id}-312x231.jpg`}></img>
+              <Text primary={MATCHES_TODAY && MATCHES_EVENING} bold={MATCHES_TODAY && MATCHES_EVENING}>{DINNER.title}</Text>
+            </Block>
+          </Link>
+        </Block>
+      )}  
+     
     </>
   )}
 
   return (
    <>
       {redirect && <Redirect to="/create-meal-plan"/>}
-        <Block row middle space={"between"} padding={"0px 0px 16px 0px"}>
+        <Block row middle space={"between"}>
           <Text h1 style={{margin: "0px 0px 32px 0px"}}>This Week's Meal Plan</Text>
           {mealPlan && mealPlan.length > 0 && (
             <Button secondary onClick={() => {
@@ -90,6 +115,7 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
           </Button>
           )}
         </Block>
+          <Block row justify={"flex-end"}><Button icon default onClick={() => setFull(!full)}>{full ? <FaThList/> : <FaThLarge/>}</Button></Block>
        {mealPlan && mealPlan.length > 0 ? mealPlan[0].week[0].map((day,i) => (
         <Block key={i}>
           <SingleDay i={i}/>
