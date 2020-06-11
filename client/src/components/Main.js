@@ -61,7 +61,7 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
         {full ? (
         <Block  row wrap="true" margin={"0px 0px 16px 0px"}>
           <Block card float={MATCHES_TODAY && MATCHES_MORNING} done={MATCHES_PAST < 0} margin={"16px" } >
-          <Link to={`/main-screen/${BREAKFAST.id}`}>
+          <Link to={`/meal-plan/${BREAKFAST.id}`}>
             <Text>Breakfast</Text>
             <Block row middle >
               <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${BREAKFAST.id}-312x231.jpg`}></img>
@@ -71,7 +71,7 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
             </Link>
           </Block>
           <Block card float={MATCHES_TODAY && MATCHES_NOON} done={MATCHES_PAST < 0} margin={"16px"}>
-          <Link to={`/main-screen/${LUNCH.id}`}>
+          <Link to={`/meal-plan/${LUNCH.id}`}>
           <Text>Lunch</Text>
             <Block row middle >
             <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${LUNCH.id}-312x231.jpg`}></img>
@@ -81,7 +81,7 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
             </Link>
           </Block>
           <Block card float={MATCHES_TODAY && MATCHES_EVENING} done={MATCHES_PAST < 0} margin={"16px"}>
-          <Link to={`/main-screen/${DINNER.id}`}>
+          <Link to={`/meal-plan/${DINNER.id}`}>
             <Text>Dinner</Text>
             <Block row middle >
               <img alt="" style={{maxWidth: "72px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${DINNER.id}-312x231.jpg`}></img>
@@ -93,19 +93,19 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
         </Block>
       ) : (
         <Block wrap="true" margin={"0px 0px 16px 0px"}>
-          <Link to={`/main-screen/${BREAKFAST.id}`}>
+          <Link to={`/meal-plan/${BREAKFAST.id}`}>
             <Block row middle>
               <img alt="" style={{maxWidth: "42px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${BREAKFAST.id}-312x231.jpg`}></img>
               <Text primary={MATCHES_TODAY && MATCHES_MORNING} bold={MATCHES_TODAY && MATCHES_MORNING}>{BREAKFAST.title}</Text>
             </Block>
           </Link>
-          <Link to={`/main-screen/${LUNCH.id}`}>
+          <Link to={`/meal-plan/${LUNCH.id}`}>
             <Block row middle>
               <img alt="" style={{maxWidth: "42px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${LUNCH.id}-312x231.jpg`}></img>
               <Text primary={MATCHES_TODAY && MATCHES_NOON} bold={MATCHES_TODAY && MATCHES_NOON}>{LUNCH.title}</Text>
             </Block>
           </Link>
-          <Link to={`/main-screen/${DINNER.id}`}>
+          <Link to={`/meal-plan/${DINNER.id}`}>
             <Block row middle>
               <img alt="" style={{maxWidth: "42px", marginRight:"16px", borderRadius: "6px"}} src={`https://spoonacular.com/recipeImages/${DINNER.id}-312x231.jpg`}></img>
               <Text primary={MATCHES_TODAY && MATCHES_EVENING} bold={MATCHES_TODAY && MATCHES_EVENING}>{DINNER.title}</Text>

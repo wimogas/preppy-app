@@ -44,7 +44,7 @@ const App = ({ loadUser, loading }) => {
         <ScrollToTop />
         <Switch>
           <Route path="/" component={HomePage} exact />
-          <PrivateRoute path="/main-screen" component={MainScreen} />
+          <PrivateRoute path="/meal-plan" component={MainScreen} />
           <PrivateRoute path="/create-meal-plan" component={CreateMealPlan} />
           <PrivateRoute path="/user" component={UserPage} />
           <Route path="/sign-in" component={SignInPage} exact />

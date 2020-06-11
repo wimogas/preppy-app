@@ -6,8 +6,8 @@ import { Single, Main } from "../components";
 const MainScreen = () => {
   return (
     <>
-      <Route path={`/main-screen`} exact component={Main} />
-      <Route path={`/main-screen/:itemId`} exact component={Single} />
+      <Route path={`/meal-plan`} exact component={Main} />
+      <Route path={`/meal-plan/:itemId`} exact component={Single} />
     </>
   );
 };
