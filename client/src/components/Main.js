@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {Link, Redirect} from 'react-router-dom'
 import moment from 'moment'
-import { FaThLarge, FaThList } from "react-icons/fa";
+import { FaThLarge, FaThList, FaAngleUp, FaAngleDown } from "react-icons/fa";
 
 import { Text, Block, Button, Spinner } from "../components";
 
@@ -13,6 +13,7 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
  const [btnLoading, setBtnLoading] = useState(false)
  const [redirect, setRedirect] = useState(false)
  const [full, setFull] = useState(true)
+
 
   useEffect(() => {
       getMealPlan(user)
@@ -33,15 +34,31 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
     const LUNCH = mealPlan[0].week[1][i.i]
     const DINNER = mealPlan[0].week[2][i.i]
     const TOTAL_CALORIES = mealPlan[0].week[0][i.i].nutrition[0].amount + mealPlan[0].week[1][i.i].nutrition[0].amount + mealPlan[0].week[2][i.i].nutrition[0].amount
-    let toggleDoneDay = MATCHES_PAST < 0 ? false : true
+    const [dropDownDay, setDropDownDay] = useState()
 
+    const handleDropDown = (i) => {
+      if(dropDownDay && dropDownDay === i) {
+        setDropDownDay(null)
+      } else {
+        setDropDownDay(i)
+      }
+      if(dropDownDay === 0) {
+        setDropDownDay(null)
+      }
+    }
+    
     return(
     <>
-      <Block row middle>
+      <Block row middle onClick={() => {
+        handleDropDown(i.i)
+      }} style={{cursor: "pointer"}}>
         <Text h2 active={MATCHES_TODAY}>{DAY}</Text>
         <Text light style={{marginLeft: "12px"}}>({TOTAL_CALORIES.toFixed(0)} Calories)</Text>
+        {MATCHES_PAST < 0 && dropDownDay === i.i ? <FaAngleDown/> : MATCHES_PAST < 0 ? <FaAngleUp/> : null}
       </Block>
-      {full ? (
+      {MATCHES_PAST >= 0 || dropDownDay === i.i ? (
+        <>
+        {full ? (
         <Block  row wrap="true" margin={"0px 0px 16px 0px"}>
           <Block card float={MATCHES_TODAY && MATCHES_MORNING} done={MATCHES_PAST < 0} margin={"16px" } >
           <Link to={`/main-screen/${BREAKFAST.id}`}>
@@ -96,7 +113,9 @@ const Main = ({ user, getMealPlan, mealPlan, deleteMealPlan }) => {
           </Link>
         </Block>
       )}  
-     
+    </>
+      ) : (<></>)}
+      
     </>
   )}
 
