@@ -38,9 +38,9 @@ const Nav = ({
     <>
         <CustomNav {...props}>
           <Block row space={"evenly"} hide={"desktop"}>
-            <Button nav active={activeNav === "main-screen"} onClick={() => {
-              setActiveNav("main-screen")
-              history.push("/main-screen")
+            <Button nav active={activeNav === "meal-plan"} onClick={() => {
+              setActiveNav("meal-plan")
+              history.push("/meal-plan")
             }}>
               <FaHome />
             </Button>
@@ -53,7 +53,7 @@ const Nav = ({
           </Block>
           <Block row hide={"mobile"}>
             <Block flex={"0.2"} justify={"flex-start"}>
-                <Link to="/main-screen" onClick={() => setActiveNav("main-screen")}><Logo style={{ fill: "white", maxWidth: "100px", marginLeft: "32px"}}></Logo></Link>
+                <Link to="/meal-plan" onClick={() => setActiveNav("meal-plan")}><Logo style={{ fill: "white", maxWidth: "100px", marginLeft: "32px"}}></Logo></Link>
             </Block>
             <Block
               row

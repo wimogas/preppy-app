@@ -195,7 +195,7 @@ const INTOLERANCES = [
 
   return (
     <>
-    {redirect && <Redirect to="/main-screen"/>}
+    {redirect && <Redirect to="/meal-plan"/>}
     <Text h1> Create Meal Plan</Text>
     <CreateMealPlan/>
     </>

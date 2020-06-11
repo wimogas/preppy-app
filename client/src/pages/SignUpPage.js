@@ -37,7 +37,7 @@ const SignUpPage = ({ user, history, register, setAlert }) => {
   }, [user]);
   return (
     <Block full>
-      {redirectTo ? <Redirect to="/main-screen" /> : null}
+      {redirectTo ? <Redirect to="/meal-plan" /> : null}
       <Block flex={"0.5"}>
         <BackButton history={history} />
       </Block>

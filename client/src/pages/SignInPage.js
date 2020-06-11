@@ -22,7 +22,7 @@ const SignInPage = ({ user, login, history, setActiveNav }) => {
     e.preventDefault();
     if (email && password) {
       login(email, password);
-      setActiveNav("main-screen")
+      setActiveNav("meal-plan")
     }
   };
   const [redirectTo, setRedirectTo] = useState(false);
@@ -34,7 +34,7 @@ const SignInPage = ({ user, login, history, setActiveNav }) => {
   }, [user]);
   return (
     <Block full>
-      {redirectTo ? <Redirect to="/main-screen" /> : null}
+      {redirectTo ? <Redirect to="/meal-plan" /> : null}
       <Block flex={"0.5"}>
         <BackButton history={history} />
       </Block>

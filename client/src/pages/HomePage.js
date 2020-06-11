@@ -16,7 +16,7 @@ const HomePage = ({ user, history }) => {
 
   return (
     <Block full>
-      {redirectTo ? <Redirect to="/main-screen" /> : null}
+      {redirectTo ? <Redirect to="/meal-plan" /> : null}
       <Block center middle>
         <Block card center middle style={{maxWidth: "500px", maxHeight: "400px"}}>
           <Block center middle flex={"2"}>
